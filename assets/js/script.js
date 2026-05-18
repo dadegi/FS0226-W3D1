@@ -77,7 +77,7 @@ const counter = {
 		const myCounter = setInterval(() => {
 			console.log(this.seconds);
 			this.seconds--;
-			if (this.seconds === 0) {
+			if (this.seconds === 8) {
 				setTimeout(() => {
 					console.log('STOP!');
 					clearInterval(myCounter);
@@ -88,3 +88,45 @@ const counter = {
 };
 
 counter.start();
+
+// destructuring
+const notObject = document.querySelector('#notObject');
+const yesArray = document.querySelector('#yesArray');
+const yesObject = document.querySelector('#yesObject');
+const modernObject = document.querySelector('#modernObject');
+const anotherObject = document.querySelector('#anotherObject');
+
+const namesArray = ['Pippo', 'Pluto', 'Paperino'];
+const student = {
+	studentName: 'Mario',
+	surname: 'Rossi',
+	age: 25,
+};
+
+const record = {
+	title: 'The dark side of the moon',
+	author: 'Pink Floyd',
+	year: 1973,
+};
+
+notObject.textContent = student;
+yesArray.textContent = namesArray;
+yesObject.textContent = `${student.studentName}, ${student.surname}, ${student.age}`;
+
+const { studentName, surname, age } = student; // se l'oggetto si modifica, i valori delle variabili non cambiano, in quanto con questa destrutturazione sono fotografie dell'oggetto i un dato punto del codice
+modernObject.textContent = `${studentName}, ${surname}, ${age}`;
+
+let { title, author, year } = record; // destrutturo con let quando devo manipolare i valori dell'oggetto senza intaccare l'oggetto stesso
+((title = 'A saucerful of secrets'), (author = 'Pink Floyd'), (year = 1968)); // Modifica il valore delle variabili senza intaccare l'oggetto originario
+console.log(record);
+anotherObject.textContent = `${title}, ${author}, ${year}`;
+
+if (author === 'Pink Floyd') {
+	record.title = title;
+	record.author = author;
+	record.year = year;
+} else {
+	console.error('Autore non corrispondente');
+}
+
+console.log(record);
